@@ -32,8 +32,6 @@ instance Functor List where
 
 instance Applicative List where
     pure a = Cons a Nil
-    Nil <*> _ = Nil
-    _ <*> Nil = Nil
     fs <*> as = flatMap (\f -> fmap f as) fs
 
 instance Arbitrary a => Arbitrary (List a) where
