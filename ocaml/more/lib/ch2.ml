@@ -27,7 +27,7 @@ let rec interleave (Cons (h, tf)) l = Cons (h, fun () -> interleave l (tf ()))
 let rec ldbl n = Cons (n, fun () -> ldbl (n * 2))
 let rec lnth (Cons (h, tf)) n = match n with 0 -> h | _ -> lnth (tf ()) (n - 1)
 
-let rec lrepeat l =
+let lrepeat l =
   let go l n = List.nth l n in
   let rec lgo l n = Cons (go l n, fun () -> lgo l ((n + 1) % List.length l)) in
   lgo l 0
