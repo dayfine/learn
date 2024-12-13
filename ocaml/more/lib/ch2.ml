@@ -43,7 +43,6 @@ let unleave ll =
 let as_char x = String.make 1 @@ Char.of_int_exn @@ (65 + x)
 
 let rec char_helper x =
-  if x < 26 then as_char x
-  else  char_helper ((x / 26) - 1) ^ as_char @@ x % 26
+  if x < 26 then as_char x else char_helper ((x / 26) - 1) ^ as_char @@ (x % 26)
 
 let cell_column = lmap char_helper @@ lseq 0
