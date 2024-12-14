@@ -27,7 +27,7 @@ let rec interleave (Cons (h, tf)) l = Cons (h, fun () -> interleave l (tf ()))
 let rec ldbl n = Cons (n, fun () -> ldbl (n * 2))
 let rec lnth (Cons (h, tf)) n = match n with 0 -> h | _ -> lnth (tf ()) (n - 1)
 
-let rec lrepeat l =
+let lrepeat l =
   let go l n = List.nth l n in
   let rec lgo l n = Cons (go l n, fun () -> lgo l ((n + 1) % List.length l)) in
   lgo l 0
@@ -43,7 +43,6 @@ let unleave ll =
 let as_char x = String.make 1 @@ Char.of_int_exn @@ (65 + x)
 
 let rec char_helper x =
-  if x < 26 then as_char x
-  else  char_helper ((x / 26) - 1) ^ as_char @@ x % 26
+  if x < 26 then as_char x else char_helper ((x / 26) - 1) ^ as_char @@ (x % 26)
 
 let cell_column = lmap char_helper @@ lseq 0
